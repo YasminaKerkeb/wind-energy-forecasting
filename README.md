@@ -1,4 +1,4 @@
-# Wind energy forecasting 
+<h1><span style="color:red"> Wind energy forecasting </span></h1>
 
 ## Context
 <p>
