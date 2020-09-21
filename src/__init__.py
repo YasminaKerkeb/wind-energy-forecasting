@@ -72,15 +72,15 @@ def train_neural_net(model, loss_fn, X, y,
             optimizer.zero_grad(); loss.backward(); optimizer.step()
 
 
-            # display final loss
-            print('\t\tFinal loss:')
-            print_str = '\t\t' + str(i+1) + '\t' + str(loss_value) + '\t' + str(p_delta_loss)
-            print(print_str)
+        # display final loss
+        print('\t\tFinal loss:')
+        print_str = '\t\t' + str(i+1) + '\t' + str(loss_value) + '\t' + str(p_delta_loss)
+        print(print_str)
 
-            if loss_value < best_final_loss: 
-                best_net = net
-                best_final_loss = loss_value
-                best_learning_curve = learning_curve
+        if loss_value < best_final_loss: 
+            best_net = net
+            best_final_loss = loss_value
+            best_learning_curve = learning_curve
 
     # Return the best curve along with its final loss and learing curve
     return best_net, best_final_loss, best_learning_curve
