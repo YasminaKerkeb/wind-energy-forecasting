@@ -87,7 +87,7 @@ def train_neural_net(model, loss_fn, X, y,
 
 def draw_neural_net(weights, biases, tf, 
                     attribute_names = None,
-                    figsize=(12, 12),
+                    figsize=(15, 15),
                     fontsizes=(15, 12)):
     '''
     Draw a neural network diagram using matplotlib based on the network weights,
@@ -129,7 +129,14 @@ def draw_neural_net(weights, biases, tf,
     Gist originally developed by @craffel and improved by @ljhuang2017
     [https://gist.github.com/craffel/2d727968c3aaebd10359]
     
-
+    Modifications (Nov. 7, 2018):
+        * adaption for use with 02450
+        * display coefficient sign and magnitude as color and 
+          linewidth, respectively
+        * simplifications to how the method in the gist was called
+        * added optinal input of figure and font sizes
+        * the usage example how  implements a recreation of the Figure 1 in
+          Exercise 8 of in the DTU Course 02450
     '''
 
    
