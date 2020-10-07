@@ -1,9 +1,6 @@
 
-import sklearn.metrics.cluster as cluster_metrics
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn import model_selection, linear_model
-from matplotlib.pyplot import contourf
 from matplotlib import cm
 import torch
 from torch import nn
