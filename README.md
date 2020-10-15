@@ -12,9 +12,9 @@ The project is for a wind-forecasting competition held at Technical University o
 
 Wind power forecasts are essential inputs to a number of decision-making problems in electricity markets. Understanding how we can generate these forecasts is a great asset to making better revenue-maximization trading strategies. Trading startegies can adopt two approaches:
 
-* Deterministic approach: We generate point predictions of wind power generation (persistence, climatology or with an advanced model) which determine our bids in spot markets
+*Deterministic approach*: We generate point predictions of wind power generation (persistence, climatology or with an advanced model) which determine our bids in spot markets
 
-* Probabilistic approach: We generate probabilistic forecasts such as quantiles, intervals and predictive distributions of wind power generation with a model of the participant’s sensitivity to regulation costs.
+*Probabilistic approach*: We generate probabilistic forecasts such as quantiles, intervals and predictive distributions of wind power generation with a model of the participant’s sensitivity to regulation costs.
 
 
 ## Available Data
@@ -29,11 +29,11 @@ In the present case, the input data consists in wind forecasts at 2 heights (10m
 
 We conduct three different approaches to this problem with different levels of complexity
 
-* ** Persistence / Climatology ** 
+* *Persistence / Climatology* 
 
 
-* ** Regression models (Lasso, Random Forest etc) ** 
+* *Regression models (Lasso, Random Forest etc)* 
 
 
-* ** Time series models (ARIMA) **
+* *Time series models (ARIMA)*
 
