@@ -25,10 +25,10 @@ class PyTorchNetwork(nn.Module):
         model:          A function defining the model using torch.Sequential
         loss_fn:        string representing the supervised learning problem among ("regression", "binary" or "multiclass")
         optimizer:      string representing the Optimizer algorithm (Exp: "Adam")
-        n_replicates:   An integer specifying number of replicates to train,
+        n_epochs:       An integer specifying number of replicates to train,
                         the neural network with the lowest loss is returned (default 3).
-        n_epochs:       An integer specifying the maximum number of iterations
-                        to do (default 10000)
+        n_batches:       An integer specifying the number of batches
+                        to do (default 1000)
         tolerance:      A float describing the tolerance/convergence criterion
                         for minimum relative change in loss (default 1e-6)
                    
@@ -69,6 +69,8 @@ class PyTorchNetwork(nn.Module):
         else:
             loss=torch.nn.CrossEntropyLoss()
         return loss
+
+    
 
     @staticmethod
     def init_weights(m):
