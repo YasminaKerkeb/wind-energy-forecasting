@@ -8,14 +8,14 @@ from torch.utils.data import DataLoader, TensorDataset
 
 
 
-class PyTorchNetwork(nn.Module):
+class PowerNNRegressor(nn.Module):
     
     """
     Base class for Neural Network model.
         
     """
     
-    def __init__(self,model, loss_fn, optimizer="Adam", n_epochs=3, n_batches= 1000, tolerance=1e-6,learning_rate=None):
+    def __init__(self,model, loss_fn, n_epochs, max_iter,optimizer="Adam", tolerance=1e-6,learning_rate=0.001):
         """
         Initialize a PyTorch neural network model given a loss function, optimizer and other parameters for training
         
@@ -27,8 +27,8 @@ class PyTorchNetwork(nn.Module):
         optimizer:      string representing the Optimizer algorithm (Exp: "Adam")
         n_epochs:       An integer specifying number of replicates to train,
                         the neural network with the lowest loss is returned (default 3).
-        n_batches:       An integer specifying the number of batches
-                        to do (default 1000)
+        max_iter:       An integer specifying the number of iterations in every epoch
+                        to do 
         tolerance:      A float describing the tolerance/convergence criterion
                         for minimum relative change in loss (default 1e-6)
                    
@@ -41,7 +41,7 @@ class PyTorchNetwork(nn.Module):
         model_func=lambda :self.model
         self.net=model_func()
         self.loss_fn=loss_fn
-        self.n_batches=n_batches
+        self.max_iter=max_iter
         self.n_epochs=n_epochs
         self.tolerance=tolerance
         self.optimizer=optimizer
@@ -85,14 +85,11 @@ class PyTorchNetwork(nn.Module):
         self.model.apply(self.init_weights)
     
 
-    def train(self,X,y):
-        N,M=X.shape
+    def train(self,X_train,y_train):
+        N,M=X_train.shape
         best_final_loss=1e100
-        logging_frequency=self.n_batches/10
-        batch_size=int(N/self.n_batches)
+        logging_frequency=self.max_iter/10
         # The dataloaders handle shuffling, batching, etc...
-        data = TensorDataset(X, y)
-        train_data = DataLoader(data, batch_size=batch_size)
         for r in range(self.n_epochs):
             print('\n\tEpoch: {}/{}'.format(r+1, self.n_epochs))
             # Initialize a model 
@@ -106,8 +103,7 @@ class PyTorchNetwork(nn.Module):
             old_loss = 1e6
 
             #Initialize the model
-            for i,train_batch in enumerate(train_data):
-                X_train, y_train=train_batch
+            for i in range(self.max_iter):
                 y_est = self.net(X_train) # forward propagation and predict labels on training set
                 loss_eval= self.loss(y_est, y_train) # determine loss
                 loss_value = loss_eval.data.numpy() #get numpy array instead of tensor
@@ -128,15 +124,14 @@ class PyTorchNetwork(nn.Module):
 
 
 
-
             # display final loss
             print('\t\tFinal loss:')
             print_str = '\t\t' + str(i+1) + '\t' + str(loss_value) + '\t' + str(p_delta_loss)
             print(print_str)
 
             if loss_value < best_final_loss: 
-                best_net = self.net
-                best_final_loss = loss_value
+                best_net = self.state_dict()
+                best_final_loss = loss_eval.item()
                 best_learning_curve = learning_curve
                 
                 # Return the best curve along with its final loss and learing curve
