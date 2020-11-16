@@ -10,7 +10,7 @@ The project is for a wind-forecasting competition held at Technical University o
 ## Introduction
 
 
-Wind power forecasts are essential inputs to a number of decision-making problems in electricity markets. Understanding how we can generate these forecasts is a great asset to making better revenue-maximization trading strategies. Trading startegies can adopt two approaches:
+Wind power forecasts are essential inputs to a number of decision-making problems in electricity markets. Understanding how we can generate these forecasts is a great asset to making better revenue-maximization trading strategies. Bidding startegies can adopt two approaches:
 
 *Deterministic approach*: We generate point predictions of wind power generation (persistence, climatology or with an advanced model) which determine our bids in spot markets
 
